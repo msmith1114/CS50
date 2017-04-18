@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index Listing
+{% endblock %}
+
+{% block main %}
+<p>
+<table style="width:100%">
+    <tr>
+        <th>Stock Name</th>
+        <th>Stock Symbol</th> 
+        <th>Shares</th>
+        <th>Current Price</th> 
+        <th>Total Value</th>
+    </tr>
+    {% for stock in stocks %}
+    <tr>
+        <td>{{stock.name}}</td>
+         <td>{{stock.symbol}}</td>
+         <td>{{stock.shares}}</td>
+         <td>{{stock.price}}</td>
+         <td>{{"%0.2f" | format(stock.value)}}</td>
+    </tr>
+    {% endfor %}
+</table>
+</p>
+   <p><b>Total Cash: {{"%0.2f" | format(total)}}</b></p>
+   <p><b>Total Holdings: {{"%0.2f" | format(holdings)}}</b></p>
+   
+       <p><b>Sell Shares</b></p>
+       <form action="{{ url_for('sell') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol (EX: AAPL)" type="text"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Sell</button>
+            </div>
+        </fieldset>
+    </form>
+
+{% endblock %}

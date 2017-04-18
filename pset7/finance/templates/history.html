@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<table style="width:100%">
+  <!-- table header -->
+  {% if history_list %}
+  <tr>
+     {% for key in history_list[0] %}
+     <th> {{ key }} </th>
+     {% endfor %}
+  </tr>
+  {% endif %}
+
+  <!-- table rows -->
+  {% for dict_item in history_list %}
+  <tr>
+     {% for value in dict_item.values() %}
+     <td> {{ value }} </td>
+     {% endfor %}
+  </tr>
+  {% endfor %}
+
+{% endblock %}
